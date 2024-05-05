@@ -15,10 +15,26 @@ And then execute:
 ```bash
 $ bundle
 ```
+## Usage
+```ruby
+class Episode < ApplicationRecord
+  include RoadToElDuration::Calculations
 
-Or install it yourself as:
-```bash
-$ gem install road_to_el_duration
+  belongs_to :series
+
+  serialize :duration, coder: RoadToElDuration::DurationCoder
+  updates_duration_of :series
+end
+
+
+class Series < ApplicationRecord
+  include RoadToElDuration::Calculations
+
+  has_many :episodes
+
+  serialize :duration, coder: RoadToElDuration::DurationCoder
+  calculates_duration_from :episodes
+end
 ```
 
 ## Contributing
