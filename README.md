@@ -1,20 +1,11 @@
 # RoadToElDuration
-Short description and motivation.
+If the duration or length in time of object needs to be calucalted from the
+duration or length in time of associated records this gem helps you achieve
+that easily. It handles automatic recalculations as child records are added,
+removed, and transferred to other parent records. It also comes with its own
+coder class that handles serializing the duration columns to and from instances
+of the ActiveSupport::Duration class and the Ruby Integer class.
 
-## Usage
-How to use my plugin.
-
-## Installation
-Add this line to your application's Gemfile:
-
-```ruby
-gem "road_to_el_duration"
-```
-
-And then execute:
-```bash
-$ bundle
-```
 ## Usage
 ```ruby
 class Episode < ApplicationRecord
@@ -37,6 +28,17 @@ class Series < ApplicationRecord
 end
 ```
 
+## Installation
+Add this line to your application's Gemfile:
+
+```ruby
+gem "road_to_el_duration"
+```
+
+And then execute:
+```bash
+$ bundle
+```
 ## Contributing
 Contribution directions go here.
 
