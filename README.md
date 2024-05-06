@@ -1,10 +1,17 @@
 # RoadToElDuration
+Like a counter cache but for length in time attributes.
+
 If the duration or length in time of an object needs to be calculated from the
 duration or length in time of associated records this gem helps you achieve
-that easily. It handles automatic recalculations as child records are added,
-removed, and transferred to other parent records. It also comes with its own
-coder class that handles serializing the duration columns to and from instances
-of the ActiveSupport::Duration class and the Ruby Integer class.
+that easily.
+
+It handles automatic recalculations as child records are added,
+removed, and transferred to other parent records.
+
+It also comes with its own coder class that handles serializing the duration
+columns to and from instances of the ActiveSupport::Duration class and the Ruby
+Integer class. This is an opt-in feature so you don't have to use it if you
+don't want.
 
 ## Usage
 ```ruby

@@ -3,12 +3,15 @@ module RoadToElDuration
     extend ActiveSupport::Concern
 
     included do
-      # This is a callback that will update the duration of the current and any
-      # previous parent records. It will only update the parent records if the
+      # This callback will update the duration of the current and any previous
+      # parent records. It will only update the parent records if the
       # parent_to_update attribute is set.
+      #
       after_save_commit :update_any_parent_durations
 
-      # These are class attributes that will be set by the class methods below.
+      # These are class attribute accessors that will be set by the class
+      # methods below.
+      #
       cattr_accessor :duration_association, :duration_column, :parent_to_update
     end
 
@@ -18,12 +21,14 @@ module RoadToElDuration
       # child records to calculate the duration of the parent. The default
       # column is :duration but you can set it to any column that will be used
       # to calculate the duration.
+      #
       def calculates_duration_from(association_name, column: :duration)
         self.duration_association = association_name
         self.duration_column = column
       end
 
       # This class method is used to set the parent association that will be updated.
+      #
       def updates_duration_of(parent_association)
         self.parent_to_update = parent_association
       end
@@ -33,6 +38,7 @@ module RoadToElDuration
     # :duration_column of the associated records and update the :duration_column of
     # the record. It is left as public API so that you can call it manually if
     # needed.
+    #
     def update_duration!
       duration_value[send(:duration_column)] = calculate_duration
       update!(**duration_value)
@@ -42,6 +48,7 @@ module RoadToElDuration
     # only update the parent records if the parent_to_update attribute is set.
     # It will update the duration of the current parent record and any previous
     # parent record if the record was transferred or removed from the collection.
+    #
     def update_any_parent_durations
       update_previous_parent_duration if transferred_or_removed_from_collection?
       update_current_parent_duration if has_parent_record?
