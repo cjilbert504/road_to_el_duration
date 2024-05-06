@@ -18,7 +18,6 @@ class RoadToElDurationTest < ActiveSupport::TestCase
     series = Series.create(name: "Series 1")
     episode.update(series: series)
 
-    binding.irb
     assert_instance_of ActiveSupport::Duration, series.reload.duration
   end
 end
