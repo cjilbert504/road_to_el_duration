@@ -1,5 +1,5 @@
 # RoadToElDuration
-If the duration or length in time of object needs to be calucalted from the
+If the duration or length in time of an object needs to be calculated from the
 duration or length in time of associated records this gem helps you achieve
 that easily. It handles automatic recalculations as child records are added,
 removed, and transferred to other parent records. It also comes with its own
