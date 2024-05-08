@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_05_215538) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_175642) do
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.integer "run_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "episodes", force: :cascade do |t|
     t.string "name"
     t.integer "duration"
@@ -20,6 +27,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_215538) do
     t.index ["series_id"], name: "index_episodes_on_series_id"
   end
 
+  create_table "levels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "series", force: :cascade do |t|
     t.string "name"
     t.integer "duration"
@@ -27,5 +40,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_215538) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "name"
+    t.integer "length"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_videos_on_course_id"
+  end
+
   add_foreign_key "episodes", "series"
+  add_foreign_key "videos", "courses"
 end

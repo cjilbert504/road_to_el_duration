@@ -2,8 +2,6 @@ require "test_helper"
 
 class RoadToElDurationTest < ActiveSupport::TestCase
   setup do
-    # @episode = episodes(:one)
-    # @series = series(:ruby_strings)
     @episode_one = Episode.create(name: "Episode 1", duration: 10.minutes)
     @series_one = Series.create(name: "Series 1")
   end
@@ -36,5 +34,13 @@ class RoadToElDurationTest < ActiveSupport::TestCase
     episode.update(series: series)
 
     assert_instance_of ActiveSupport::Duration, series.reload.duration
+  end
+
+  test "the duration column can be named anything for either the parent or child classes" do
+    course = Course.create(name: "Level 1")
+    video = Video.create(name: "Video 1", length: 10.minutes)
+    video.update(course: course)
+
+    assert_equal 10.minutes, course.run_time
   end
 end
