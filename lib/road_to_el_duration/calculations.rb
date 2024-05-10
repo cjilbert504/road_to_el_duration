@@ -26,14 +26,16 @@ module RoadToElDuration
       # to calculate the duration.
       #
       def calculates_duration_from(child_association_name, column: :duration)
+        raise ArgumentError, "Please pass a valid child_association argument to the #{__method__} instead of nil" if child_association_name.nil?
         self.child_association_name= child_association_name
         self.child_duration_column = column
       end
 
       # This class method is used to set the parent association that will be updated.
       #
-      def updates_duration_of(parent_association, column: :duration)
-        self.parent_association_name = parent_association
+      def updates_duration_of(parent_association_name, column: :duration)
+        raise ArgumentError, "Please pass a valid parent_association argument to the #{__method__} instead of nil" if parent_association_name.nil?
+        self.parent_association_name = parent_association_name
         self.parent_duration_column = column
       end
     end

@@ -43,4 +43,30 @@ class RoadToElDurationTest < ActiveSupport::TestCase
 
     assert_equal 10.minutes, course.run_time
   end
+
+  test "the names of the columns can be passed to the :column argument as a symbol or a string" do
+    course = Course.create(name: "Level 1")
+    video = Video.create(name: "Video 1", length: 10.minutes)
+    video.update(course: course)
+
+    assert_equal 10.minutes, course.run_time
+  end
+
+  test "the child or parent association name cannot be nil and an error will be raised" do
+    error = assert_raises(ArgumentError) do
+      Course.class_eval do
+        calculates_duration_from nil, column: "length"
+      end
+    end
+
+    assert_instance_of RoadToElDuration::ArgumentError, error
+
+    error = assert_raises(ArgumentError) do
+      Course.class_eval do
+        updates_duration_of nil, column: "length"
+      end
+    end
+
+    assert_instance_of RoadToElDuration::ArgumentError, error
+  end
 end
