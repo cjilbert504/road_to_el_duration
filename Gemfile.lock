@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    road_to_el_duration (0.1.0)
+    road_to_el_duration (1.0.0)
       rails (>= 7.1.3.2)
 
 GEM
