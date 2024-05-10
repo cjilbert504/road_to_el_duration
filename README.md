@@ -47,9 +47,10 @@ end
 Here we have two models, `Episode` and `Series`. The `Series` model has its
 `duration` column serialized with the `RoadToElDuration::DurationCoder` coder and
 the `Episode` model has its `duration` column serialized with the
-`RoadToElDuration::DurationCoder` coder as well. The `Series` model also
-has its `duration` attribute populated from the sum of episode `duration` that
-belongs to a series.
+`RoadToElDuration::DurationCoder` coder as well.
+
+The `Series` model also has its `duration` attribute populated from the sum of
+episode `duration` that belongs to a series.
 
 This setup assumes that both the `Episode` and `Series` models have an integer
 column on their tables named `duration` that is used to store the duration in
